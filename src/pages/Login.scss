@@ -1,0 +1,43 @@
+@charset "utf-8";
+.login {
+  .article {
+    width: 500px;
+    margin: 20px auto;
+    background-color: beige;
+    padding: 50px 0;
+    .logo {
+      font-size: 40px;
+      text-align: center;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+        'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+    .inputBox {
+      padding: 0 30px;
+      input[type='text'],
+      input[type='password'] {
+        width: 100%;
+        height: 40px;
+        margin: 10px 0;
+        &::placeholder {
+          text-align: center;
+        }
+      }
+      button[type='button'] {
+        width: 100%;
+        height: 35px;
+        margin: 20px 0;
+        background-color: aqua;
+        &:disabled {
+          background-color: #ccc;
+        }
+      }
+    }
+    .forget {
+      margin-top: 20px;
+      text-align: center;
+      a {
+        color: #999;
+      }
+    }
+  }
+}
