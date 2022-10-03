@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './Login.scss';
 
 let idValue = 0;
-let pwLength = 0;
+let pwValue = 0;
 
 const Login = () => {
   const [val, setVal] = useState(true);
@@ -12,13 +12,43 @@ const Login = () => {
     if (e.target.name === 'id') {
       idValue = e.target.value;
     } else {
-      pwLength = e.target.value.length;
+      pwValue = e.target.value;
     }
-    idValue.includes('@') && pwLength >= 8 ? setVal(false) : setVal(true);
+    idValue.includes('@') && pwValue.length >= 8 ? setVal(false) : setVal(true);
   }
+
   const navigate = useNavigate();
-  const loginSucess = () => {
-    navigate('/todo');
+  const loginSuccess = () => {
+    navigate('/');
+  };
+
+  const signIn = () => {
+    fetch(
+      `http://ec2-3-38-135-202.ap-northeast-2.compute.amazonaws.com:8000/auth/signin`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: idValue,
+          password: pwValue,
+        }),
+      }
+    )
+      .then(response => response.json())
+      .then(result => {
+        if (setVal === false) {
+          loginSuccess();
+          localStorage.setItem('access_token', result.access_token);
+        } else {
+          alert('아이디와 비밀번호를 확인해주세요.');
+        }
+      });
+  };
+
+  const signUp = () => {
+    alert('안녕');
   };
 
   return (
@@ -40,18 +70,13 @@ const Login = () => {
             id="pw"
             placeholder="비밀번호"
           />
-          <button
-            disabled={val}
-            type="button"
-            id="button"
-            onClick={loginSucess}
-          >
+          <button disabled={val} type="submit" id="button" onClick={signIn}>
             로그인
           </button>
         </div>
-        <div className="forget">
-          <a href="https://bitnaleeeee.github.io/">회원가입</a>
-        </div>
+        <button type="button" id="signUp" onClick={signUp}>
+          회원가입
+        </button>
       </article>
     </div>
   );
