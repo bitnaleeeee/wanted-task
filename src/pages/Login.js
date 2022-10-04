@@ -48,7 +48,7 @@ const Login = () => {
   };
 
   const signUp = () => {
-    alert('안녕');
+    navigate('/signup');
   };
 
   return (
