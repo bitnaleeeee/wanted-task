@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { API } from '../../../config.js';
 import './SignIn.scss';
+import { FaUser, FaUnlockAlt } from 'react-icons/fa';
 
 let idValue = '';
 let pwValue = '';
@@ -47,21 +48,27 @@ const SignIn = () => {
   };
   return (
     <div className="login">
+      <div className="logo">로그인</div>
       <article className="article">
-        <div className="logo">login</div>
         <div className="inputBox">
-          <input
-            onChange={loginCheck}
-            type="text"
-            id="id"
-            placeholder="이메일을 입력해주세요"
-          />
-          <input
-            onChange={loginCheck}
-            type="password"
-            id="pw"
-            placeholder="비밀번호"
-          />
+          <div className="inputWrap">
+            <FaUser className="icon" />
+            <input
+              onChange={loginCheck}
+              type="text"
+              id="id"
+              placeholder="이메일을 입력해주세요"
+            />
+          </div>
+          <div className="inputWrap">
+            <FaUnlockAlt className="icon" />
+            <input
+              onChange={loginCheck}
+              type="password"
+              id="pw"
+              placeholder="비밀번호"
+            />
+          </div>
           <button disabled={val} type="submit" id="button" onClick={login}>
             로그인
           </button>

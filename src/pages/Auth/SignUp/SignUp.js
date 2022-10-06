@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { API } from '../../../config.js';
 import './SignUp.scss';
+import { FaUser, FaUnlockAlt, FaKey } from 'react-icons/fa';
 
 let idValue = '';
 let nameValue = '';
@@ -43,7 +44,7 @@ const SignUp = () => {
     })
       .then(response => response.json())
       .then(data => {
-        if (data.message === '동일한 이메일이 이미 존재합니다.') {
+        if (data.error) {
           return alert(data.message);
         }
         localStorage.setItem('token', data.access_token);
@@ -55,21 +56,36 @@ const SignUp = () => {
   return (
     <div className="signUp">
       <article className="article">
-        <div className="logo">Sign Up</div>
+        <div className="logo">회원가입</div>
         <div className="inputBox">
-          <input
-            onChange={userInfo}
-            type="text"
-            id="id"
-            placeholder="이메일 주소"
-          />
-          <input onChange={userInfo} type="text" id="name" placeholder="성명" />
-          <input
-            onChange={userInfo}
-            type="password"
-            id="pw"
-            placeholder="비밀번호"
-          />
+          <div className="inputWrap">
+            <FaUser className="icon" />
+            <input
+              onChange={userInfo}
+              type="text"
+              id="id"
+              placeholder="이메일 주소"
+            />
+          </div>
+          <div className="inputWrap">
+            <FaUnlockAlt className="icon" />
+            <input
+              onChange={userInfo}
+              type="text"
+              id="name"
+              placeholder="성명"
+            />
+          </div>
+          <div className="inputWrap">
+            <FaKey className="icon" />
+            <input
+              onChange={userInfo}
+              type="password"
+              id="pw"
+              placeholder="비밀번호"
+            />
+          </div>
+
           <p>비밀번호는 8자리 이상으로 설정해주세요.</p>
           <button
             disabled={val}
