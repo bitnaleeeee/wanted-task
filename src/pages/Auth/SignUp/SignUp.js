@@ -3,33 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { API } from '../../../config.js';
 import './SignUp.scss';
 
-let idValue = 0;
-let nameValue = 0;
-let pwValue = 0;
+let idValue = '';
+let nameValue = '';
+let pwValue = '';
 
 const SignUp = () => {
   const [val, setVal] = useState(true);
-
-  fetch(API.SINGUP, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      email: idValue,
-      password: pwValue,
-    }),
-  })
-    .then(response => response.json())
-    .then(data => {
-      if (data.access_token) {
-        localStorage.setItem('token', data.access_token);
-        alert('로그인이 완료되었습니다.');
-        navigate('/todo');
-      } else {
-        alert('아이디와 비밀번호를 확인해주세요.');
-      }
-    });
 
   function userInfo(e) {
     if (e.target.id === 'id') {
@@ -50,9 +29,28 @@ const SignUp = () => {
     }
   }
   const navigate = useNavigate();
-  const signIn = () => {
-    alert('회원가입을 환영합니다!');
-    navigate('/');
+
+  const validSignUp = () => {
+    fetch(API.SINGUP, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: idValue,
+        password: pwValue,
+      }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.access_token) {
+          localStorage.setItem('token', data.access_token);
+          alert('환영합니다!');
+          navigate('/');
+        } else {
+          alert('올바른 회원가입 양식이 아닙니다');
+        }
+      });
   };
 
   return (
@@ -74,7 +72,12 @@ const SignUp = () => {
             placeholder="비밀번호"
           />
           <p>비밀번호는 8자리 이상으로 설정해주세요.</p>
-          <button disabled={val} type="submit" id="signUp" onClick={signIn}>
+          <button
+            disabled={val}
+            type="submit"
+            id="signUp"
+            onClick={validSignUp}
+          >
             가입
           </button>
         </div>
@@ -82,5 +85,4 @@ const SignUp = () => {
     </div>
   );
 };
-
 export default SignUp;

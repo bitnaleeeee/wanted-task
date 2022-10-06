@@ -24,7 +24,7 @@ const SignIn = () => {
     navigate('/signup');
   };
 
-  const signIn = () => {
+  const login = () => {
     fetch(API.LOGIN, {
       method: 'POST',
       headers: {
@@ -62,7 +62,7 @@ const SignIn = () => {
             id="pw"
             placeholder="비밀번호"
           />
-          <button disabled={val} type="submit" id="button" onClick={signIn}>
+          <button disabled={val} type="submit" id="button" onClick={login}>
             로그인
           </button>
         </div>
