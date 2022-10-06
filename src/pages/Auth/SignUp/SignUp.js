@@ -31,7 +31,7 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   const validSignUp = () => {
-    fetch(API.SINGUP, {
+    fetch(API.SIGNUP, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -43,13 +43,12 @@ const SignUp = () => {
     })
       .then(response => response.json())
       .then(data => {
-        if (data.access_token) {
-          localStorage.setItem('token', data.access_token);
-          alert('환영합니다!');
-          navigate('/');
-        } else {
-          alert('올바른 회원가입 양식이 아닙니다');
+        if (data.message === '동일한 이메일이 이미 존재합니다.') {
+          return alert(data.message);
         }
+        localStorage.setItem('token', data.access_token);
+        alert('환영합니다!');
+        navigate('/');
       });
   };
 

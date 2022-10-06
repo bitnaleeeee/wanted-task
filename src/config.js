@@ -1,6 +1,6 @@
-const BASE_URL = 'https://pre-onboarding-selection-task.shop';
+const URL = 'https://pre-onboarding-selection-task.shop';
 
 export const API = {
-  LOGIN: `${BASE_URL}/auth/signin`,
-  SINGUP: `${BASE_URL}//auth/signup`,
+  LOGIN: `${URL}/auth/signin`,
+  SIGNUP: `${URL}/auth/signup`,
 };
