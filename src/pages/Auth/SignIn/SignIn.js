@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { API } from '../../../config.js';
 import './SignIn.scss';
@@ -8,7 +8,14 @@ let idValue = '';
 let pwValue = '';
 
 const SignIn = () => {
+  const navigate = useNavigate();
   const [val, setVal] = useState(true);
+
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      navigate('/todo');
+    }
+  }, [navigate]);
 
   function loginCheck(e) {
     if (e.target.id === 'id') {
@@ -19,7 +26,6 @@ const SignIn = () => {
     idValue.includes('@') && pwValue.length >= 8 ? setVal(false) : setVal(true);
   }
 
-  const navigate = useNavigate();
   const signUp = () => {
     navigate('/signup');
   };

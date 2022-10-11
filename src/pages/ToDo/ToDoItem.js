@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import './TodoItem.scss';
 
 let prevTodoStr = '';
 
-const ToDoItem = props => {
+const TodoItem = props => {
   const { data, removeTodoItem, updateTodoItem } = props;
   const [editing, setEditing] = useState(false);
   const [todoStr, setTodoStr] = useState('');
@@ -20,7 +21,7 @@ const ToDoItem = props => {
     setTodoStr(todoStr);
     setEditing(!editing);
 
-    // 업데이트
+    // 데이터 업데이트
     updateTodoItem(data.id, todoCheck, todoStr);
   };
 
@@ -40,14 +41,14 @@ const ToDoItem = props => {
   const changeCheckbox = () => {
     setTodoCheck(!todoCheck);
 
-    // 업데이트
+    // 데이터 업데이트
     updateTodoItem(data.id, !todoCheck, todoStr);
   };
 
   // 수정모드
   if (editing) {
     return (
-      <div>
+      <div className="item">
         <input
           type="checkbox"
           checked={todoCheck}
@@ -55,34 +56,41 @@ const ToDoItem = props => {
           readOnly
         />
         <input type="text" value={todoStr} onChange={changeTodoStr} />
-        <button type="button" className="sendBtn" onClick={changeEdition}>
-          제출
-        </button>
-        <button type="button" className="cencleBtn" onClick={cencelEdtiong}>
-          취소
-        </button>
+        <div className="btnBox">
+          <button type="button" className="sendBtn" onClick={changeEdition}>
+            제출
+          </button>
+          <button type="button" className="cencleBtn" onClick={cencelEdtiong}>
+            취소
+          </button>
+        </div>
       </div>
     );
   }
 
   // 일반모드
   return (
-    <div>
-      <input
-        type="checkbox"
-        checked={todoCheck}
-        onChange={changeCheckbox}
-        readOnly
-      />
-      {todoStr}
-      <button type="button" className="modifyBtn" onClick={changeEdition}>
-        수정
-      </button>
-      <button type="button" className="deleteBtn" onClick={deleteTodoItem}>
-        삭제
-      </button>
+    <div className="item">
+      <label htmlFor={'chk_' + data.id}>
+        <input
+          type="checkbox"
+          id={'chk_' + data.id}
+          checked={todoCheck}
+          onChange={changeCheckbox}
+          readOnly
+        />
+        {todoStr}
+      </label>
+      <div className="btnBox">
+        <button type="button" className="modifyBtn" onClick={changeEdition}>
+          수정
+        </button>
+        <button type="button" className="deleteBtn" onClick={deleteTodoItem}>
+          삭제
+        </button>
+      </div>
     </div>
   );
 };
 
-export default ToDoItem;
+export default TodoItem;

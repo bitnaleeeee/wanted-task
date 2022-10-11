@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { API } from '../../../config.js';
 import './SignUp.scss';
@@ -9,6 +9,7 @@ let nameValue = '';
 let pwValue = '';
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [val, setVal] = useState(true);
 
   function userInfo(e) {
@@ -29,7 +30,6 @@ const SignUp = () => {
       setVal(true);
     }
   }
-  const navigate = useNavigate();
 
   const validSignUp = () => {
     fetch(API.SIGNUP, {

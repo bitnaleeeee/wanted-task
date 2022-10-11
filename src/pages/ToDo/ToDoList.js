@@ -1,13 +1,13 @@
 import React from 'react';
-import ToDoItem from './ToDoItem';
+import TodoItem from './TodoItem';
 
-const ToDoList = props => {
-  const { todoArr, removeTodoItem, updateTodoItem } = props;
+const TodoList = props => {
+  const { todoData, removeTodoItem, updateTodoItem } = props;
   return (
     <div className="todoList">
-      {todoArr.map((item, idx) => {
+      {todoData.map((item, idx) => {
         return (
-          <ToDoItem
+          <TodoItem
             key={idx}
             data={item}
             removeTodoItem={removeTodoItem}
@@ -18,4 +18,5 @@ const ToDoList = props => {
     </div>
   );
 };
-export default ToDoList;
+
+export default TodoList;
