@@ -20,7 +20,6 @@ const SignIn = () => {
   }
 
   const navigate = useNavigate();
-
   const signUp = () => {
     navigate('/signup');
   };
