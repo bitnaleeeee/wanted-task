@@ -3,7 +3,7 @@
 ### 이 레파지토리는 원티드 프리온보딩 프론트엔드 과정 선발 과제 제출용 저장소입니다.
 
 - ### 배포 링크 : [https://recordboy-scrap-sample.herokuapp.com](https://recordboy-scrap-sample.herokuapp.com/)
-- ### 소스 : [resipotory](https://github.com/bitnaleeeee/wanted-pre-onboarding-fe-7)
+- ### 소스 : [resipotory 바로가기](https://github.com/bitnaleeeee/wanted-pre-onboarding-fe-7)
 
 ### STACK
 
@@ -22,18 +22,18 @@
 
 </br>
 
-## 프로젝트의 실행
+## 프로젝트의실행
 
 ```
 $ npm install
 $ npm start
 ```
 
-## 실행 결과
+## 실행결과
 
 <영상 짤로 넣기>
 
-## 폴더 구조
+## 폴더구조
 
 ```
 📦 src
@@ -60,7 +60,7 @@ $ npm start
 └── 📜 Router.js
 ```
 
-## 구현 사항
+## 구현사항
 
 </br>
 
@@ -78,7 +78,6 @@ useEffect(() => {
 ```
 
 로컬 스토리지에 토큰이 있는 상태로 `/` 에 접속할 경우 `todo`페이지로 연결됩니다.
-</br>
 </br>
 
 - ### 아이디, 비밀번호 로그인 조건 검사
@@ -137,8 +136,6 @@ const SignIn = () => {
 [JSX]
 
 ```javascript
-//SignIn.js
-
 <button disabled={val} type="submit" id="button" onClick={login}>
   로그인
 </button>
@@ -149,7 +146,6 @@ const SignIn = () => {
 </br>
 
 - ### 아이디, 비밀번호 로그인 유효성 검사 및 토큰 발급
-</br>
 
 ```javascript
 //SignUp.js
@@ -196,17 +192,15 @@ const SignIn = () => {
 [JSX]
 
 ```javascript
-//SignUp.js
   <button disabled={val} type="submit" id="signUp"
-  onClick={validSignUp}
-  >
+  onClick={validSignUp} >
 ```
 
 val에 변동되는 값에 따라 `useState`값이 `true`일 경우 버튼이 비활성화되고, 입력 조건이 충족하여 `false`일 경우 버튼이 활성화 되도록 하였습니다.
 </br>
 </br>
 
-- ### 아이디, 비밀번호 로그인 유효성 검사 및 토큰 발급
+- ### 아이디 / 비밀번호 로그인 유효성 검사 및 토큰 발급
 
 ```javascript
 //SignUp.js
