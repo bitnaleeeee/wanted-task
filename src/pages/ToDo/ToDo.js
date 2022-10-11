@@ -42,7 +42,6 @@ const Todo = () => {
       .then(data => {
         // 데이터 초기 셋팅
         setTodoData(data);
-        console.log('최초 데이터 리스트:', data);
       });
   };
 
@@ -71,17 +70,16 @@ const Todo = () => {
             ...{ isCompleted: false, todo: item },
           })
         );
-        console.log('추가 단일 데이터:', data);
       });
   };
 
   /**
    * 3. [API] 투두리스트 삭제
-   * @param {*} id
+   * @param {number} id
    */
   const removeTodoItem = id => {
     // [API]
-    fetch(API.TODO + '/' + id, {
+    fetch(`${API.TODO}/${id}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -93,7 +91,6 @@ const Todo = () => {
         return todoArr.id !== id;
       })
     );
-    console.log('삭제 데이터 ID:', id);
   };
 
   /**
@@ -104,7 +101,7 @@ const Todo = () => {
    */
   const updateTodoItem = (id, check, todo) => {
     // [API]
-    fetch(API.TODO + '/' + id, {
+    fetch(`${API.TODO}/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -125,7 +122,6 @@ const Todo = () => {
               : item;
           })
         );
-        console.log('수정된 단일 데이터:', data);
       });
   };
 
