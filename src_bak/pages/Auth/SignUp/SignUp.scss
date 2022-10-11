@@ -1,0 +1,72 @@
+@charset "utf-8";
+.signUp {
+  .logo {
+    color: rgb(77 78 78);
+    font-family: sans-serif;
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 38px;
+  }
+  .article {
+    width: 460px;
+    margin: 20px auto;
+    background-color: rgb(255 255 255);
+    border-style: solid;
+    border-color: rgb(206 214 208);
+    padding: 100px 0;
+    border-radius: 25px;
+    margin-bottom: 59px;
+
+    .inputBox {
+      padding: 0 30px;
+      input[type='text'],
+      input[type='password'] {
+        width: 100%;
+        height: 40px;
+        margin: 10px 0;
+
+        border-style: solid;
+        border-color: rgb(206 214 208);
+        box-sizing: border-box;
+        padding-left: 40px;
+
+        &::placeholder {
+          text-align: center;
+        }
+      }
+      .inputWrap {
+        position: relative;
+        .icon {
+          position: absolute;
+          top: 21px;
+          left: 13px;
+          color: rgb(85 84 84);
+        }
+      }
+    }
+
+    p {
+      font-size: 13px;
+      color: rgb(104, 98, 98);
+      text-align: center;
+      margin: 27px 0;
+    }
+    button[type='submit'] {
+      width: 14%;
+      height: 35px;
+      cursor: pointer;
+      border-style: solid;
+      background-color: rgb(75 206 123);
+      color: white;
+      border-color: rgb(206 214 208);
+
+      margin-left: 44%;
+      &:disabled {
+        border-style: solid;
+        background-color: #f0f0f0;
+        color: white;
+        cursor: default;
+      }
+    }
+  }
+}

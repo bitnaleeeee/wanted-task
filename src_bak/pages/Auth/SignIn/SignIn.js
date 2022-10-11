@@ -8,8 +8,8 @@ let idValue = '';
 let pwValue = '';
 
 const SignIn = () => {
-  const navigate = useNavigate();
   const [val, setVal] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
@@ -53,7 +53,7 @@ const SignIn = () => {
   };
   return (
     <div className="login">
-      <h1 className="logo">로그인</h1>
+      <div className="logo">로그인</div>
       <article className="article">
         <div className="inputBox">
           <div className="inputWrap">

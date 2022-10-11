@@ -1,21 +1,17 @@
 @charset "utf-8";
 .login {
   .logo {
-    color: rgb(77 78 78);
+    margin: 50px 0 0;
     font-size: 40px;
-    padding-bottom: 10px;
     text-align: center;
-    font-family: sans-serif;
-    margin: 64px 0 10px;
   }
   .article {
-    width: 470px;
-    margin: 20px auto;
-    background-color: rgb(255 255 255);
+    width: 500px;
+    box-sizing: border-box;
+    margin: 30px auto 0;
+    border: 3px solid #e5e5e5;
     padding: 50px 0;
-    border-radius: 25px;
-    border-style: solid;
-    border-color: rgb(206 214 208);
+    border-radius: 10px;
 
     .inputBox {
       padding: 0 30px;
@@ -24,11 +20,13 @@
         width: 100%;
         height: 45px;
         margin: 10px 0;
-        border-radius: 8px;
-        border-style: solid;
-        border-color: rgb(206 214 208);
+        border-radius: 5px;
+        border: 3px solid #e5e5e5;
         box-sizing: border-box;
-        padding-left: 40px;
+        padding: 0 40px;
+        font-size: 16px;
+        background: #fff;
+        outline: none;
         &::placeholder {
           text-align: center;
         }
@@ -37,43 +35,39 @@
         position: relative;
         .icon {
           position: absolute;
-          top: 21px;
-          left: 13px;
-          color: rgb(85 84 84);
+          top: 24px;
+          left: 12px;
+          color: #666;
         }
       }
       button[type='submit'] {
         width: 100%;
-        height: 35px;
-        margin: 20px 3px;
-        border-style: solid;
-        background-color: rgb(75 206 123);
-        border-radius: 8px;
-        color: white;
+        margin: 20px 0 0;
+        background-color: #4bce7b;
+        border: 3px solid #33b863;
+        height: 45px;
+        border-radius: 5px;
+        color: #fff;
         cursor: pointer;
-        border-color: rgb(206 214 208);
-        height: 50px;
-        margin-bottom: 40px;
-        margin-bottom: 26px;
+        font-size: 16px;
 
         &:disabled {
           cursor: default;
-          border-style: solid;
-          border-color: rgb(206 214 208);
+          border: 3px solid #e5e5e5;
           background-color: #f0f0f0;
-          border-radius: 8px;
-          color: rgb(78 79 79);
+          border-radius: 5px;
+          color: #999;
         }
       }
     }
     button[type='button'] {
+      display: block;
+      margin: 20px auto 0;
       cursor: pointer;
       border: none;
-      background-color: white;
+      background-color: #fff;
       font-size: 14px;
-      color: rgb(148, 142, 142);
-      display: block;
-      margin: auto;
+      color: #999;
     }
   }
 }

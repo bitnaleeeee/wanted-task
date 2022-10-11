@@ -1,42 +1,51 @@
 .todo {
-  margin: 50px auto 0;
-  padding: 20px;
-  border: 2px solid #ccc;
-  border-radius: 10px;
-  width: 500px;
-}
+  .logo {
+    margin: 50px 0 0;
+    font-size: 40px;
+    text-align: center;
+  }
+  .article {
+    margin: 30px auto 0;
+    padding: 50px 30px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 3px solid #e5e5e5;
+    width: 100%;
+    width: 500px;
+  }
 
-/* 투두 내 공통 */
-button {
-  display: block;
-  width: 50px;
-  height: 40px;
-  font-size: 15px;
-  border: none;
-  border-radius: 5px;
-  background-color: #e0e0e0;
-  cursor: pointer;
-  color: #fff;
-  transition: 0.2s;
-  &:hover {
-    opacity: 0.7;
-  }
-  &.addBtn {
-    background-color: #ccc;
-  }
-  &.addBtn.on {
-    background-color: #3366cc;
-  }
-  &.modifyBtn {
-    background-color: #66cc99;
-  }
-  &.deleteBtn {
-    background-color: #ff6666;
-  }
-  &.sendBtn {
-    background-color: #9933cc;
-  }
-  &.cencleBtn {
-    background-color: #666;
+  /* 투두 공통 버튼 */
+  button {
+    display: block;
+    width: 50px;
+    height: 45px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #e0e0e0;
+    cursor: pointer;
+    color: #fff;
+    transition: 0.3s;
+    &:hover {
+      opacity: 0.7;
+    }
+    &.addBtn {
+      background-color: #ccc;
+    }
+    &.addBtn.on {
+      background-color: #3366cc;
+    }
+    &.modifyBtn {
+      background-color: #66cc99;
+    }
+    &.deleteBtn {
+      background-color: #ff6666;
+    }
+    &.sendBtn {
+      background-color: #9933cc;
+    }
+    &.cencleBtn {
+      background-color: #666;
+    }
   }
 }

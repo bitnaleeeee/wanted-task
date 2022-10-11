@@ -9,12 +9,6 @@ const ToDoForm = props => {
     setTodoStr(e.target.value);
   };
 
-  const keyPress = e => {
-    if (e.key === 'Enter') {
-      clickAddBtn();
-    }
-  };
-
   const clickAddBtn = () => {
     if (todoStr.length) {
       addTodoItem(todoStr);
@@ -24,12 +18,7 @@ const ToDoForm = props => {
 
   return (
     <div className="todoForm">
-      <input
-        type="text"
-        value={todoStr}
-        onChange={changeTodoStr}
-        onKeyPress={keyPress}
-      />
+      <input type="text" value={todoStr} onChange={changeTodoStr} />
       <button
         type="button"
         className={todoStr.length ? 'addBtn on' : 'addBtn'}

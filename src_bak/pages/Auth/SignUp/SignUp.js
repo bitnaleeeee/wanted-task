@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { API } from '../../../config.js';
+import { API } from '../../../config';
 import './SignUp.scss';
 import { FaUser, FaUnlockAlt, FaKey } from 'react-icons/fa';
 
@@ -55,8 +55,8 @@ const SignUp = () => {
 
   return (
     <div className="signUp">
-      <h1 className="logo">회원가입</h1>
       <article className="article">
+        <div className="logo">회원가입</div>
         <div className="inputBox">
           <div className="inputWrap">
             <FaUser className="icon" />

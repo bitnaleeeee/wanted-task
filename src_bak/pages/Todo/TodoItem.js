@@ -71,10 +71,7 @@ const TodoItem = props => {
   // 일반모드
   return (
     <div className="item">
-      <label
-        htmlFor={'chk_' + data.id}
-        className={data.isCompleted ? 'clear' : ''}
-      >
+      <label htmlFor={'chk_' + data.id}>
         <input
           type="checkbox"
           id={'chk_' + data.id}
