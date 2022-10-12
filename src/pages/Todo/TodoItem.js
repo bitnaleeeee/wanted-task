@@ -9,19 +9,15 @@ const TodoItem = props => {
   const [todoStr, setTodoStr] = useState('');
   const [todoCheck, setTodoCheck] = useState(false);
 
-  // 초기 투두리스트 값 변경
   useEffect(() => {
     setTodoStr(data.todo);
     setTodoCheck(data.isCompleted);
   }, [data.todo, data.isCompleted]);
 
-  // 수정
   const changeEdition = () => {
     prevTodoStr = todoStr;
     setTodoStr(todoStr);
     setEditing(!editing);
-
-    // 데이터 업데이트
     updateTodoItem(data.id, todoCheck, todoStr);
   };
 
@@ -40,12 +36,9 @@ const TodoItem = props => {
 
   const changeCheckbox = () => {
     setTodoCheck(!todoCheck);
-
-    // 데이터 업데이트
     updateTodoItem(data.id, !todoCheck, todoStr);
   };
 
-  // 수정모드
   if (editing) {
     return (
       <div className="item">
@@ -68,7 +61,6 @@ const TodoItem = props => {
     );
   }
 
-  // 일반모드
   return (
     <div className="item">
       <label

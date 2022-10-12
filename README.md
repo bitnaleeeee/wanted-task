@@ -1,9 +1,10 @@
 # 원티드 프리온보딩 프론트엔드 코스
 
-### 이 레파지토리는 원티드 프리온보딩 프론트엔드 과정 선발 과제 제출용 저장소입니다.
+#### 이 레파지토리는 원티드 프리온보딩 프론트엔드 과정 선발 과제 제출용 저장소입니다.
 
 - ### 배포 링크 : [https://recordboy-scrap-sample.herokuapp.com](https://recordboy-scrap-sample.herokuapp.com/)
-- ### 소스 : [resipotory 바로가기](https://github.com/bitnaleeeee/wanted-pre-onboarding-fe-7)
+
+- ### 숏에세이 : [블로그 ](https://blog.naver.com/mifylbna/222898636920)
 
 ### STACK
 
@@ -31,7 +32,11 @@ $ npm start
 
 ## 실행결과
 
-<영상 짤로 넣기>
+</br>
+
+<img src="https://user-images.githubusercontent.com/99943583/195349755-8e6d0b85-a0d5-4f3a-8b77-bc1300316b21.gif">
+
+</br>
 
 ## 폴더구조
 
@@ -61,6 +66,10 @@ $ npm start
 ```
 
 ## 구현사항
+
+</br>
+
+# 로그인 / 회원가입
 
 </br>
 
@@ -229,3 +238,339 @@ const validSignUp = () => {
 ```
 
 회원 가입 입력 조건이 미충족 되는 경우 서버에서 보낸 에러 메시지를 `alert`창에 출력하도록 작성했습니다. 만약 토큰이 발급되었을 경우, 로컬스토리지에 저장한 후 로그인창으로 이동합니다.
+
+<br><br>
+
+# 투두 리스트
+
+</br>
+
+투두 리스트 컴포넌트 구조는 아래와 같습니다.
+</br>
+
+```
+📜 Todo.js
+ ├──📜 TodoForm.js
+ └──📜 TodoList.js
+     └──📜 TodoItem.js
+```
+
+- ### 투두 컴포넌트, 네가지 기능의 함수가 있음
+
+1. 초기 셋팅
+2. 항목 추가
+3. 항목 삭제
+4. 항목 수정
+
+```javascript
+//Todo.js
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { API } from '../../config.js';
+import TodoForm from './TodoForm';
+import TodoList from './TodoList';
+import './Todo.scss';
+
+const Todo = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!localStorage.getItem('token')) {
+      navigate('/');
+    }
+    getTodo();
+  }, [navigate]);
+
+  const [todoData, setTodoData] = useState([
+    {
+      id: 0,
+      todo: '',
+      isCompleted: false,
+      userId: 0,
+    },
+  ]);
+
+  const getTodo = () => {
+    // [API]
+    fetch(API.TODO, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        setTodoData(data);
+      });
+  };
+
+  const addTodoItem = item => {
+    fetch(API.TODO, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+      body: JSON.stringify({
+        todo: item,
+      }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        setTodoData(
+          todoData.concat({
+            id: data.id,
+            ...{ isCompleted: false, todo: item },
+          })
+        );
+      });
+  };
+  const removeTodoItem = id => {
+    fetch(`${API.TODO}/${id}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    });
+    setTodoData(
+      todoData.filter(todoArr => {
+        return todoArr.id !== id;
+      })
+    );
+  };
+
+  const updateTodoItem = (id, check, todo) => {
+    fetch(`${API.TODO}/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+      body: JSON.stringify({
+        todo: todo,
+        isCompleted: check,
+      }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        setTodoData(
+          todoData.map(item => {
+            return item.id === id
+              ? { ...item, ...{ isCompleted: check }, ...{ todo: todo } }
+              : item;
+          })
+        );
+      });
+  };
+
+  return (
+    <div className="todo">
+      <h1 className="logo">Todo List</h1>
+      <article className="article">
+        <TodoForm addTodoItem={addTodoItem} />
+        <TodoList
+          todoData={todoData}
+          removeTodoItem={removeTodoItem}
+          updateTodoItem={updateTodoItem}
+        />
+      </article>
+    </div>
+  );
+};
+
+export default Todo;
+```
+
+1. 초기 셋팅  
+   `getTodo` 함수에서는 `fetch`를 이용하여 해당 계정에 저장되어있는 투두 리스트를 받아 `setTodoData` 함수로 리스트를 셋팅한다. 맨 처음 가입한 회원은 따로 저장된 투두 리스트가 없기 때문에 셋팅을 따로 안해준다.
+2. 항목 추가  
+   `addTodoItem` 함수는 `TodoForm` 컴포넌트에서 받은 할일 항목을 요청값으로 보내고 서버에서는 응답값으로 해당 항목을 저장한 아이디를 보내준다. 서버에서 응답을 받을 시점에 `setTodoData` 함수로 응답받은 아이디와 추가한 투두 항목을 저장해준다.
+3. 삭제  
+   `removeTodoItem` 함수는 서버 요청 url에 파라미터로 삭제할 아이디를 요청하며 통신 메서드는 `DELETE` 메서드로 요청한다. 서버에 요청 후 `filter` 메서드를 활용해서 삭제한 아이디가 아닌 항목들을 리턴하여 리스트를 다시 구성해준다.
+4. 수정  
+   `updateTodoItem`는 투두 항목의 할일 목록 및 할일 체크 유무를 업데이트 하기 위한 함수이다. 하위 컴포넌트(`TodoItem`)에서 id, check, todo을 받아오며 서버에는 수정할 투두 항목의 아이디를 url에 파라미터로 보내주며, 통신 body에 할일 목록 및 체크 유무를 보내둔다. `setTodoData` 함수에는 해당 아이디와 매칭되는 투두 항목에 새롭게 바뀐 할일 내용 및 체크 유무를 셋팅해 준다.
+
+- ### 투두 항목(할일) 추가 컴포넌트
+
+```javascript
+// TodoForm.js
+import React, { useState } from 'react';
+import './TodoForm.scss';
+
+const ToDoForm = props => {
+  const { addTodoItem } = props;
+  const [todoStr, setTodoStr] = useState('');
+
+  const changeTodoStr = e => {
+    setTodoStr(e.target.value);
+  };
+
+  const keyPress = e => {
+    if (e.key === 'Enter') {
+      clickAddBtn();
+    }
+  };
+
+  const clickAddBtn = () => {
+    if (todoStr.length) {
+      addTodoItem(todoStr);
+      setTodoStr('');
+    }
+  };
+
+  return (
+    <div className="todoForm">
+      <input
+        type="text"
+        value={todoStr}
+        onChange={changeTodoStr}
+        onKeyPress={keyPress}
+      />
+      <button
+        type="button"
+        className={todoStr.length ? 'addBtn on' : 'addBtn'}
+        onClick={clickAddBtn}
+      >
+        추가
+      </button>
+    </div>
+  );
+};
+
+export default ToDoForm;
+```
+
+텍스트 인풋에 내용을 작성하면 `setTodoStr`함수로 내용을 실시간으로 업데이트하며, 추가 버튼을 누르면 `props`에서 받아온 `addTodoItem`함수로 작성한 내용을 전달해 준다. 이 함수는 `Todo` 컴포넌트에서 작성된 투두 항목을 받아 서버로 요청하게 된다.
+
+- ### 투두 리스트 컴포넌트
+
+```javascript
+// TodoList.js
+import React from 'react';
+import TodoItem from './TodoItem';
+
+const TodoList = props => {
+  const { todoData, removeTodoItem, updateTodoItem } = props;
+  return (
+    <div className="todoList">
+      {todoData.map((item, idx) => {
+        return (
+          <TodoItem
+            key={idx}
+            data={item}
+            removeTodoItem={removeTodoItem}
+            updateTodoItem={updateTodoItem}
+          />
+        );
+      })}
+    </div>
+  );
+};
+
+export default TodoList;
+```
+
+`Todo` 컴포넌트에서 투두 항목에 데이터를 전달해주고 삭제(`removeTodoItem`) 및 업데이트(`updateTodoItem`) 함수를 전달해 준다.
+
+- ### 투두 항목 셋팅 컴포넌트
+
+```javascript
+// TodoItem.js
+import React, { useState, useEffect } from 'react';
+import './TodoItem.scss';
+
+let prevTodoStr = '';
+
+const TodoItem = props => {
+  const { data, removeTodoItem, updateTodoItem } = props;
+  const [editing, setEditing] = useState(false);
+  const [todoStr, setTodoStr] = useState('');
+  const [todoCheck, setTodoCheck] = useState(false);
+
+  useEffect(() => {
+    setTodoStr(data.todo);
+    setTodoCheck(data.isCompleted);
+  }, [data.todo, data.isCompleted]);
+
+  const changeEdition = () => {
+    prevTodoStr = todoStr;
+    setTodoStr(todoStr);
+    setEditing(!editing);
+    updateTodoItem(data.id, todoCheck, todoStr);
+  };
+
+  const cencelEdtiong = () => {
+    setTodoStr(prevTodoStr);
+    setEditing(!editing);
+  };
+
+  const changeTodoStr = e => {
+    setTodoStr(e.target.value);
+  };
+
+  const deleteTodoItem = () => {
+    removeTodoItem(data.id);
+  };
+
+  const changeCheckbox = () => {
+    setTodoCheck(!todoCheck);
+    updateTodoItem(data.id, !todoCheck, todoStr);
+  };
+
+  if (editing) {
+    return (
+      <div className="item">
+        <input
+          type="checkbox"
+          checked={todoCheck}
+          onChange={changeCheckbox}
+          readOnly
+        />
+        <input type="text" value={todoStr} onChange={changeTodoStr} />
+        <div className="btnBox">
+          <button type="button" className="sendBtn" onClick={changeEdition}>
+            제출
+          </button>
+          <button type="button" className="cencleBtn" onClick={cencelEdtiong}>
+            취소
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="item">
+      <label
+        htmlFor={'chk_' + data.id}
+        className={data.isCompleted ? 'clear' : ''}
+      >
+        <input
+          type="checkbox"
+          id={'chk_' + data.id}
+          checked={todoCheck}
+          onChange={changeCheckbox}
+          readOnly
+        />
+        {todoStr}
+      </label>
+      <div className="btnBox">
+        <button type="button" className="modifyBtn" onClick={changeEdition}>
+          수정
+        </button>
+        <button type="button" className="deleteBtn" onClick={deleteTodoItem}>
+          삭제
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default TodoItem;
+```
+
+`TodoItem` 컴포넌트에서는 삭제/수정/수정취소/할일 완수 유무를 셋팅한다. `useEffect`로 초기에 각 받아온 항목을 셋팅하며 `changeEdition` 함수는 할일 내용을 편집한다. 편집하는 순간에 `prevTodoStr` 변수에 수정되기 전 할일 내용을 넣어주며 이는 할일 편집 취소를 클릭했을 때 수정되기 전 내용으로 변경하기 위해 사용된다. 할일 내용을 편집할때는 `editing` 변수가 `true`가 되며 이때 `JSX`는 수정 모드로 보여지게 된다. 할일 내용을 수정하면 `props`에서 받아온 `updateTodoItem` 함수에 어아다, 할일, 할일 완수 유무를 보내주며 이 데이터는 서버로 보내서 데이터를 업데이트 한다.
+
+편집중 취소 버튼은 `cencelEdtiong` 함수가 실행되며 할일 내용 수정하기 전 내용(`prevTodoStr`)로 셋팅해 준다.
+
+삭제 버튼은 `deleteTodoItem` 함수를 실행하며 `props`에서 받아온 `removeTodoItem`함수에 삭제할 항목의 아이디를 인자값으로 보내준다. 이 함수는 서버에 `DELETE`에서드를 활용한 요청으로 서버에서 해당 항목을 삭제하게 된다.
+
+체크박스는 체크할 때마다 `changeCheckbox` 함수를 실행하며 삭제 버튼과 마찬가지로 `props`애서 받아온 `updateTodoItem`함수를 호출하여 할일 완수 유무를 업데이트 해준다.
