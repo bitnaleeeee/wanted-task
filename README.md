@@ -1,7 +1,5 @@
 # 원티드 프리온보딩 프론트엔드 코스
 
-#### 이 레파지토리는 원티드 프리온보딩 프론트엔드 과정 선발 과제 제출용 저장소입니다.
-
 - #### 배포 링크 : [https://bitnaleeeee.github.io/pre-onboarding-build/](https://bitnaleeeee.github.io/pre-onboarding-build/)
 
 - #### 숏에세이 : [블로그 글 바로가기](https://blog.naver.com/mifylbna/222898636920)
