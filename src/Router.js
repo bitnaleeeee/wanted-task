@@ -6,7 +6,7 @@ import Todo from './pages/Todo/Todo';
 
 const Router = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="wanted-pre-onboarding-fe-7">
       <Routes>
         <Route path="/" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
