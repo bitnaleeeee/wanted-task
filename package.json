@@ -1,4 +1,6 @@
 {
+  "homepage": "https://bitnaleeeee.github.io/wanted-pre-onboarding-fe-7/",
+  "deploy": "cp build/index.html build/404.html && gh-pages -d build",
   "name": "wanted-pre-onboarding-fe-7",
   "version": "0.1.0",
   "private": true,
@@ -21,7 +23,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -44,6 +48,7 @@
   "devDependencies": {
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "gh-pages": "^4.0.0",
     "prettier": "^2.7.1"
   }
 }
