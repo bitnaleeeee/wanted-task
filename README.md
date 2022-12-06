@@ -1,8 +1,6 @@
-# 원티드 프리온보딩 프론트엔드 코스
+# 로그인, 회원가입 / ToDoList 구현
 
-#### 이 레파지토리는 원티드 프리온보딩 프론트엔드 과정 선발 과제 제출용 저장소입니다.
-
-- #### 배포 링크 : [https://bitnaleeeee.github.io/wanted-pre-onboarding-fe-7/](https://bitnaleeeee.github.io/wanted-pre-onboarding-fe-7/)
+- ## 배포 링크 : [https://bitnaleeeee.github.io/wanted-pre-onboarding-fe-7/](https://bitnaleeeee.github.io/wanted-pre-onboarding-fe-7/)
 
 ### STACK
 
