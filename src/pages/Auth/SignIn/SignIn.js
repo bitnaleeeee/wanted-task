@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { API } from '../../../config.js';
 import './SignIn.scss';
 import { FaUser, FaUnlockAlt } from 'react-icons/fa';
+import './SignIn.scss';
 
 let idValue = '';
 let pwValue = '';
