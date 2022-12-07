@@ -10,22 +10,21 @@
 
 ## 목차
 
-- [프로젝트의 실행](#프로젝트의실행)
-- [구현 사항](#구현사항)
 - [실행 결과](#실행결과)
-- [폴더 구조](#폴더구조)
 - [구현 사항](#구현사항)
+- [폴더 구조](#폴더구조)
+- [주요 기능](#구현사항)
+- [프로젝트의 실행](#프로젝트의실행)
 
 ---
 
+## 실행결과
+
 </br>
 
-## 프로젝트의실행
+<img src="https://user-images.githubusercontent.com/99943583/195349755-8e6d0b85-a0d5-4f3a-8b77-bc1300316b21.gif">
 
-```
-$ npm install
-$ npm start
-```
+</br>
 
 </br>
 
@@ -40,12 +39,6 @@ $ npm start
 - [x] `todo` 체크 박스 구현
 
 </br>
-
-## 실행결과
-
-</br>
-
-<img src="https://user-images.githubusercontent.com/99943583/195349755-8e6d0b85-a0d5-4f3a-8b77-bc1300316b21.gif">
 
 </br>
 
@@ -90,7 +83,7 @@ $ npm start
      └──📜 TodoItem.js
 ```
 
-# 구현사항
+# 주요기능
 
 </br>
 
@@ -498,3 +491,12 @@ export default TodoItem;
    삭제 버튼은 `deleteTodoItem` 함수를 실행하며 `props`에서 받아온 `removeTodoItem`함수에 삭제할 항목의 아이디를 인자값으로 보내줍니다. 이 함수는 서버에 `DELETE`에서드를 활용한 요청으로 서버에서 해당 항목을 삭제하게 됩니다.
 4. 할일 완수 유무(체크박스)
    체크박스는 체크할 때마다 `changeCheckbox` 함수를 실행하며 삭제 버튼과 마찬가지로 `props`애서 받아온 `updateTodoItem`함수를 호출하여 할일 완수 유무를 업데이트 해줍니다.
+
+<br>
+
+## 프로젝트의실행
+
+```
+$ npm install
+$ npm start
+```
