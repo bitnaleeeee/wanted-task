@@ -1,6 +1,6 @@
 # 로그인, 회원가입 / ToDoList 구현
 
-- ## 배포 링크 : [https://bitnaleeeee.github.io/wated-task/](https://bitnaleeeee.github.io/wated-task/)
+- ## 배포 링크 : [https://bitnaleeeee.github.io/wanted-task/](https://bitnaleeeee.github.io/wanted-task/)
 
 ### STACK
 
