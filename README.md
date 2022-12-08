@@ -252,12 +252,16 @@ const validSignUp = () => {
 ## 투두 리스트
 
 투두 리스트 컴포넌트 구조는 아래와 같습니다.
-</br>
-@@ -252,261 +90,3 @@ const validSignUp = () => {
-└──📜 TodoList.js
-└──📜 TodoItem.js
 
-````
+</br>
+
+```
+📜 Todo.js
+ ├──📜 TodoForm.js
+ └──📜 TodoList.js
+     └──📜 TodoItem.js
+```
+
 - ### 투두 컴포넌트, 네가지 기능의 함수가 있습니다.
 1. 초기 셋팅
 2. 항목 추가
