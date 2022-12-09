@@ -22,7 +22,7 @@
 
 </br>
 
-<img src="https://user-images.githubusercontent.com/99943583/195349755-8e6d0b85-a0d5-4f3a-8b77-bc1300316b21.gif">
+<img src="https://user-images.githubusercontent.com/99943583/206635583-84726f99-102b-4da7-a652-504eb76ec9d2.gif">
 
 </br>
 
@@ -263,10 +263,12 @@ const validSignUp = () => {
 ```
 
 - ### 투두 컴포넌트, 네가지 기능의 함수가 있습니다.
+
 1. 초기 셋팅
 2. 항목 추가
 3. 항목 삭제
 4. 항목 수정
+
 ```javascript
 //Todo.js
 const Todo = () => {
@@ -340,7 +342,7 @@ const Todo = () => {
       });
   };
 };
-````
+```
 
 1. 초기 셋팅  
    `getTodo` 함수에서는 `fetch`를 이용하여 해당 계정에 저장되어있는 투두 리스트를 받아 `setTodoData` 함수로 리스트를 셋팅합니다. 맨 처음 가입한 회원은 따로 저장된 투두 리스트가 없기 때문에 셋팅을 따로 안해줍니다.
