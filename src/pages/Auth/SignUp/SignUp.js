@@ -41,16 +41,10 @@ const SignUp = () => {
         email: idValue,
         password: pwValue,
       }),
-    })
-      .then(response => response.json())
-      .then(data => {
-        if (data.error) {
-          return alert(data.message);
-        }
-        localStorage.setItem('token', data.access_token);
-        alert('환영합니다!');
-        navigate('/');
-      });
+    }).then(response => {
+      alert('환영합니다!');
+      navigate('/');
+    });
   };
 
   return (
